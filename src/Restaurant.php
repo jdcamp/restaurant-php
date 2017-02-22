@@ -39,6 +39,7 @@
             $GLOBALS['DB']->exec("INSERT INTO restaurant(restaurant_name, price_point, cuisine_id) VALUES ('{$this->getRestaurantName()}', {$this->getPricePoint()}, {$this->getCuisineId()});");
             $this->restaurant_id = $GLOBALS['DB']->lastInsertId();
         }
+        
         static function getAll()
         {
             $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurant;");
