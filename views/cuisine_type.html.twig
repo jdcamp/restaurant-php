@@ -2,9 +2,8 @@
 
 {% block cuisine_input %}
 <ul>
-
     {% for cuisine in cuisines %}
-        <li>{{cuisine.getCuisine}}</li>
+        <li><a href="/cuisine/{{cuisine.getId}}">{{cuisine.getCuisine}}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
