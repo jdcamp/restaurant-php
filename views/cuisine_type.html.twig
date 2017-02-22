@@ -1,0 +1,10 @@
+{% extends 'index.html.twig' %}
+
+{% block cuisine_input %}
+<ul>
+
+    {% for cuisine in cuisines %}
+        <li>{{cuisine.getCuisine}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -14,6 +14,15 @@
             $this->price_point = $price_point;
         }
 
+        function setRestaurantName($new_restaurant_name)
+        {
+            $this->restaurant_name = $new_restaurant_name;
+        }
+
+        function getRestaurantName()
+        {
+            return $this->restaurant_name;
+        }
         function getRestaurantId()
         {
             return $this->restaurant_id;
@@ -24,10 +33,6 @@
             return $this->cuisine_id;
         }
 
-        function getRestaurantName()
-        {
-            return $this->restaurant_name;
-        }
 
         function getPricePoint()
         {
@@ -39,7 +44,7 @@
             $GLOBALS['DB']->exec("INSERT INTO restaurant(restaurant_name, price_point, cuisine_id) VALUES ('{$this->getRestaurantName()}', {$this->getPricePoint()}, {$this->getCuisineId()});");
             $this->restaurant_id = $GLOBALS['DB']->lastInsertId();
         }
-        
+
         static function getAll()
         {
             $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurant;");
@@ -58,6 +63,12 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec(" DELETE FROM restaurant;");
+        }
+
+        function update($new_name)
+        {
+            $GLOBALS['DB']->exec("UPDATE restaurant SET restaurant_name '{$new_name}' WHERE id = {$this->getRestaurantId()};");
+            $this->setRestaurantName($new_name);
         }
     }
  ?>

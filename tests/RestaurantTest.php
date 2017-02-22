@@ -49,7 +49,7 @@
             $restaurant_id = null;
             $cuisine_id = null;
             $price_point = 1;
-            $restaurant_test = new Restaurant($restaurant_name, $restaurant_id, $cuisine_id, $price_point);
+            $restaurant_test = new Restaurant($restaurant_id, $cuisine_id, $restaurant_name, $price_point);
             $restaurant_test->save();
 
             //Act
@@ -59,5 +59,21 @@
             //Assert
             $this->assertEquals([], $result);
 
+        }
+
+        function test_update()
+        {
+            $restaurant_name = "Samosa";
+            $new_name = "India Palace";
+            $restaurant_id = null;
+            $cuisine_id = null;
+            $price_point = 1;
+            $restaurant_test = new Restaurant($restaurant_id, $cuisine_id, $restaurant_name, $price_point);
+
+            $restaurant_test->update($new_name);
+            var_dump($restaurant_test);
+            $result = $restaurant_test->getRestaurantName();
+
+            $this->assertEquals($new_name, $result);
         }
       }
