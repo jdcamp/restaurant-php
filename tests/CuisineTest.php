@@ -21,7 +21,22 @@
 
             $result = Cuisine::getAll();
 
-            $this->assertEquals(1, is_numeric($result[1]->getId()));
+            $this->assertEquals(1, is_numeric($result[0]->getId()));
+
+        }
+
+        function test_deleteAll()
+        {
+            $cuisine = "indian";
+            $id = null;
+            $cuisine_test = new Cuisine($cuisine, $id);
+            $cuisine_test->save();
+
+            Cuisine::deleteAll();
+            $result = Cuisine::getAll();
+
+
+            $this->assertEquals([], $result);
 
         }
       }
