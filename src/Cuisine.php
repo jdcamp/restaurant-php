@@ -63,7 +63,7 @@
 
         function update($new_name)
         {
-            $GLOBALS['DB']->exec("UPDATE cuisine_type SET cuisine_type '{$this->getCuisine()}' WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("UPDATE cuisine_type SET cuisine_type = '{$new_name}' WHERE id = {$this->getId()};");
             $this->setCuisine($new_name);
         }
 
@@ -95,8 +95,13 @@
                 $new_restaurant = new Restaurant($restaurant_id, $cuisine_id, $name, $price_point);
                 array_push($restaurants, $new_restaurant);
         }
-        $index = rand(0,sizeof($restaurants));
+        $index = rand(0,sizeof($restaurants)-1);
         return $restaurants[$index];
+    }
+
+    function deleteOne()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM cuisine_type WHERE id = {$this->getId()};");
     }
 }
 ?>
