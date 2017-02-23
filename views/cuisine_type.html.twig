@@ -22,11 +22,13 @@
                 {% for cuisine in cuisines %}
                     <li>
                         <a href="/cuisine/{{cuisine.getId}}">{{cuisine.getCuisine}}</a>
-                        <button name="button"><a href="/update_cuisine/{{cuisine.getId}}">edit</a></button>
+
+                            <a href="/update_cuisine/{{cuisine.getId}}"><button name="button">edit</button></a>
+
 
                         <form action="/delete_cuisine/{{ cuisine.getId }}" method="post">
-                              <input name="_method" type="hidden" value="delete">
-                              <button type="submit">Delete this cuisine</button>
+                            <input name="_method" type="hidden" value="delete">
+                            <button type="submit">Delete this cuisine</button>
                         </form>
                     </li>
                 {% endfor %}
@@ -36,10 +38,10 @@
                 <select name="random">
                     {% for cuisine in cuisines %}
                         <option value="{{cuisine.getId}}">{{cuisine.getCuisine}}
-                {% endfor %}
-            </select>
-            <button type="submit" class="btn btn-info" name="button">random</button>
-        </form>
-    </div>
-</body>
-</html>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-info" name="button">random</button>
+                </form>
+            </div>
+        </body>
+    </html>

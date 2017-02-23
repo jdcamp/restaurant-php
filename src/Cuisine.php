@@ -96,6 +96,9 @@
                 array_push($restaurants, $new_restaurant);
         }
         $index = rand(0,sizeof($restaurants)-1);
+        if (sizeof($restaurants) == 0) {
+            return null;
+        }
         return $restaurants[$index];
     }
 

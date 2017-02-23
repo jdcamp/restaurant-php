@@ -5,8 +5,15 @@
         <title></title>
     </head>
     <body>
+        {% if random == null %}
+        <p>
+            no stuff
+        </p>
+        {% else %}
+
         <p>
             {{random.getRestaurantName}}
         </p>
+        {% endif %}
     </body>
 </html>

@@ -94,8 +94,6 @@
           $original_restaurant->deleteOne();
           return $app['twig']->render("restaurant_list.html.twig", array('cuisine'=>$cuisine, 'restaurants'=>$cuisine->getRestaurants()));
       });
-
-
     return $app;
 
 ?>

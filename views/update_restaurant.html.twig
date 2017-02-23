@@ -13,7 +13,7 @@
             <input id="new_name" type="text" name="new_name" value="{{restaurant.getRestaurantName}}">
             <select name="new_price">
                 {% for i in 1..4 %}
-                {% set counter = i %}
+                    {% set counter = i %}
                     {% set price_in_dollars = '' %}
                     {% if restaurant.getPricePoint == counter %}
                         <option selected="selected" value="{{i}}">
@@ -23,16 +23,16 @@
                             {{price_in_dollars}}
                         </option>
                     {% else %}
-                            <option value="{{i}}">
-                                {% for j in 1..i %}
-                                    {% set price_in_dollars = price_in_dollars ~ "$" %}
-                                {% endfor %}
-                                {{price_in_dollars}}
-                            </option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
-                <button type="submit">update</button>
-            </form>
-        </body>
-    </html>
+                        <option value="{{i}}">
+                            {% for j in 1..i %}
+                                {% set price_in_dollars = price_in_dollars ~ "$" %}
+                            {% endfor %}
+                            {{price_in_dollars}}
+                        </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <button type="submit">update</button>
+        </form>
+    </body>
+</html>
