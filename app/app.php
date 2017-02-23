@@ -90,8 +90,14 @@
       });
       $app->delete("/delete_restaurant/{id}", function($id) use ($app) {
           $original_restaurant = Restaurant::find($id);
-          $cuisine = Cuisine::find($original_restaurant->getCuisineId());
-          $original_restaurant->deleteOne();
+          if ($original_restaurant == null) {
+              $cuisine = null;
+              return $app['twig']->render("index.html.twig");
+
+          } else {
+              $cuisine = Cuisine::find($original_restaurant->getCuisineId());
+              $original_restaurant->deleteOne();
+          }
           return $app['twig']->render("restaurant_list.html.twig", array('cuisine'=>$cuisine, 'restaurants'=>$cuisine->getRestaurants()));
       });
     return $app;

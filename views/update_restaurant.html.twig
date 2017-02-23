@@ -2,11 +2,15 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/styles.css" type="text/css">
         <title></title>
     </head>
     <body>
-        <h1>Update
-            {{restaurant.getRestaurantName}}</h1>
+        <div class="jumbotron">
+            <h1>Update
+                {{restaurant.getRestaurantName}}</h1>        
+        </div>
         <form action="/edit_restaurant/{{restaurant.getRestaurantId}}" method="post">
             <input name="_method" type="hidden" value="patch">
             <label for="new_name">Enter new name</label>
@@ -32,7 +36,7 @@
                     {% endif %}
                 {% endfor %}
             </select>
-            <button type="submit">update</button>
+            <button class="btn" type="submit">update</button>
         </form>
     </body>
 </html>

@@ -2,14 +2,24 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/styles.css" type="text/css">
         <title>{{cuisine.getCuisine}}</title>
         <meta charset="utf-8">
     </head>
     <body>
-        <div class="container">
+        {% if cuisine.getCuisine == null %}
+        <p>
+            no restaurants
+        </p>
+        {% endif %}
 
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Restaurants</h1>
+            </div>
             <a href="/">
-                <button type="button" name="button">Home</button>
+                <button class="btn btn-info" type="button" name="button">Home</button>
             </a>
             <form action="/add_restaurant/{{cuisine.getId}}" method="post">
                 <label for="name">Restaurant Name</label>
@@ -21,21 +31,19 @@
                     <option value="3">$$$</option>
                     <option value="4">$$$$</option>
                 </select><br>
-                <button type="submit" name="button">Add Restaurant</button>
+                <button type="submit" name="button" class="btn btn-info">Add Restaurant</button>
             </form>
             <h3>{{cuisine.getCuisine}}</h3>
-            <ul>
                 {% for restaurant in restaurants %}
-                    <li>{{restaurant.getRestaurantName}}</li>
-                    <a href="/edit_restaurant/{{restaurant.getRestaurantId}}">
-                        <button type="button">edit</button>
-                    </a>
+                    <h3>{{restaurant.getRestaurantName}}</h3>
                     <form action="/delete_restaurant/{{ restaurant.getRestaurantId }}" method="post">
+                        <a href="/edit_restaurant/{{restaurant.getRestaurantId}}">
+                            <button class="btn btn-info" type="button">edit</button>
+                        </a>
                         <input name="_method" type="hidden" value="delete">
-                        <button type="submit">Delete this restaurant</button>
+                        <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
                     </form>
                 {% endfor %}
-            </ul>
         </div>
     </body>
 </html>

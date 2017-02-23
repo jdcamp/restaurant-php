@@ -2,37 +2,34 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/styles.css" type="text/css">
         <meta charset="utf-8">
         <title>
-            {% block title %}Restaurant{% endblock %}
+            Restaurant
         </title>
     </head>
-    <body>
+    <body class="cuisine_type">
+        <div class="jumbotron">
+            <h1>Cuisine Type</h1>
+        </div>
         <div class="container">
-
             <form action="/cuisine_list" method="post">
                 <label for="cuisine_type">Enter a type of Cuisine</label>
                 <input type="text" name="cuisine_type">
-                <button type="submit" name="button">Submit</button>
+                <button type="submit" name="button" class="btn btn-info" >Submit</button>
             </form>
-            <button type="button">
+            <button type="button" class="btn btn-danger">
                 <a href="/delete">Delete Everything</a>
             </button>
-            <ul>
                 {% for cuisine in cuisines %}
-                    <li>
-                        <a href="/cuisine/{{cuisine.getId}}">{{cuisine.getCuisine}}</a>
-
-                            <a href="/update_cuisine/{{cuisine.getId}}"><button name="button">edit</button></a>
-
-
+                <h3>{{cuisine.getCuisine}}</h3>
                         <form action="/delete_cuisine/{{ cuisine.getId }}" method="post">
+                            <a href="/cuisine/{{cuisine.getId}}"><button class="btn btn-info"type="button" name="button">View {{cuisine.getCuisine}} restaurants</button></a>
+                            <a href="/update_cuisine/{{cuisine.getId}}"><button class="btn" name="button">edit</button></a>
                             <input name="_method" type="hidden" value="delete">
-                            <button type="submit">Delete this cuisine</button>
+                            <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
                         </form>
-                    </li>
                 {% endfor %}
-            </ul>
             <h2>Pick a cuisine type to have a random restaurant generated</h2>
             <form action="/custom_wheel" method="post">
                 <select name="random">

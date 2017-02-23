@@ -2,17 +2,21 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
     <meta charset="utf-8">
     <title></title>
 </head>
 
 <body>
-    <h1>Update {{cuisine.getCuisine}}</h1>
+    <div class="jumbotron">
+        <h1>Update {{cuisine.getCuisine}}</h1>
+    </div>
     <form action="/edit_cuisine/{{cuisine.getId}}" method="post">
         <input name="_method" type="hidden" value="patch">
         <label for="new_name">Enter new name</label>
         <input id="new_name" type="text" name="new_name">
-        <button type="submit">update</button>
+        <button class="btn btn-info" type="submit">update</button>
     </form>
 </body>
 
