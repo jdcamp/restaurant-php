@@ -27,6 +27,12 @@
             <ul>
                 {% for restaurant in restaurants %}
                     <li>{{restaurant.getRestaurantName}}</li>
+                    <button type="button"><a href="/edit_restaurant/{{restaurant.getRestaurantId}}">edit</a></button>
+
+                    <form action="/delete_restaurant/{{ restaurant.getRestaurantId }}" method="post">
+                          <input name="_method" type="hidden" value="delete">
+                          <button type="submit">Delete this restaurant</button>
+                    </form>
                 {% endfor %}
             </ul>
         </div>

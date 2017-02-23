@@ -75,7 +75,25 @@
          $original_cuisine->deleteOne();
          return $app['twig']->render("cuisine_type.html.twig", array('cuisines'=>Cuisine::getAll()));
      });
-
+     $app->get("/edit_restaurant/{id}", function($id) use ($app) {
+         $original_restaurant = Restaurant::find($id);
+         return $app['twig']->render("update_restaurant.html.twig", array('restaurant' => $original_restaurant));
+     });
+     $app->patch("/edit_restaurant/{id}", function($id) use ($app) {
+         $restaurant = Restaurant::find($id);
+         $restaurant_name = $_POST['new_name'];
+         $price_point = $_POST['new_price'];
+         $restaurant->updateName($restaurant_name);
+         $restaurant->updatePrice($price_point);
+         $cuisine = Cuisine::find($restaurant->getCuisineId());
+         return $app['twig']->render("restaurant_list.html.twig", array('cuisine'=>$cuisine, 'restaurants'=>$cuisine->getRestaurants()));
+      });
+      $app->delete("/delete_restaurant/{id}", function($id) use ($app) {
+          $original_restaurant = Restaurant::find($id);
+          $cuisine = Cuisine::find($original_restaurant->getCuisineId());
+          $original_restaurant->deleteOne();
+          return $app['twig']->render("restaurant_list.html.twig", array('cuisine'=>$cuisine, 'restaurants'=>$cuisine->getRestaurants()));
+      });
 
 
     return $app;

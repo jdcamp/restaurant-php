@@ -18,6 +18,10 @@
         {
             $this->restaurant_name = $new_restaurant_name;
         }
+        function setPricePoint($new_price_point)
+        {
+            $this->price_point = $new_price_point;
+        }
 
         function getRestaurantName()
         {
@@ -65,10 +69,34 @@
             $GLOBALS['DB']->exec(" DELETE FROM restaurant;");
         }
 
-        function update($new_name)
+        function updateName($new_name)
         {
-            $GLOBALS['DB']->exec("UPDATE restaurant SET restaurant_name '{$new_name}' WHERE id = {$this->getRestaurantId()};");
+            $GLOBALS['DB']->exec("UPDATE restaurant SET restaurant_name = '{$new_name}' WHERE id = {$this->getRestaurantId()};");
             $this->setRestaurantName($new_name);
+        }
+
+        function updatePrice($new_price)
+        {
+            $GLOBALS['DB']->exec("UPDATE restaurant SET price_point = '{$new_price}' WHERE id = {$this->getRestaurantId()};");
+            $this->setPricePoint($new_price);
+        }
+        function deleteOne()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM restaurant WHERE id = {$this->getRestaurantId()};");
+        }
+
+        static function find($search_id)
+        {
+            $found_restaurant = null;
+            $restaurants = Restaurant::getAll();
+            foreach ($restaurants as $restaurant) {
+                $restaurant_id = $restaurant->getRestaurantId();
+                if ($restaurant_id == $search_id)
+                {
+                    $found_restaurant = $restaurant;
+                }
+            }
+            return $found_restaurant;
         }
     }
  ?>
