@@ -1,18 +1,1 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
-        <meta charset="utf-8">
-        <title>{% block title %}Restaurant{% endblock %}</title>
-    </head>
-    <body>
-        <form action="/cuisine_list" method="post">
-            <label for="cuisine_type">Enter a type of Cuisine</label>
-            <input type="text" name="cuisine_type">
-            <button type="submit" name="button">Submit</button>
-        </form>
-        <button type="button"><a href="/delete">Delete Everything</a></button>
-        {% block cuisine_input %}
-        {% endblock %}
-    </body>
-</html>
+

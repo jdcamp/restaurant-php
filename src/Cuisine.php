@@ -83,5 +83,20 @@
             return $restaurants;
         }
 
+        static function getRandomRestaurant($id)
+        {
+        $random_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurant WHERE cuisine_id = {$id};");
+        $restaurants = array();
+            foreach ($random_restaurants as $restaurant) {
+                $restaurant_id = $restaurant['id'];
+                $cuisine_id = $restaurant['cuisine_id'];
+                $name = $restaurant['restaurant_name'];
+                $price_point = $restaurant['price_point'];
+                $new_restaurant = new Restaurant($restaurant_id, $cuisine_id, $name, $price_point);
+                array_push($restaurants, $new_restaurant);
+        }
+        $index = rand(0,sizeof($restaurants));
+        return $restaurants[$index];
     }
+}
 ?>

@@ -28,6 +28,9 @@
         return $app['twig']->render("restaurant_list.html.twig", array('cuisine'=>$cuisine, 'restaurants'=>$cuisine->getRestaurants()));
     });
 
+    $app->get("/cuisine_list", function() use ($app) {
+        return $app['twig']->render("cuisine_type.html.twig", array('cuisines'=>Cuisine::getAll()));
+    });
     $app->post("/cuisine_list", function() use ($app) {
         $new_cuisine = new Cuisine($_POST['cuisine_type'], null);
         $new_cuisine->save();
@@ -45,6 +48,17 @@
         Restaurant::deleteAll();
         return $app['twig']->render("index.html.twig");
     });
+    $app->get("/user_homepage", function() use ($app) {
+        $all_cuisines = Cuisine::getAll();
+        return $app['twig']->render("user_homepage.html.twig", array('cuisines' => $all_cuisines));
+    });
+    $app->post("/custom_wheel", function() use ($app) {
+        $cuisine_id = $_POST['random'];
+        $all_cuisines = Cuisine::getAll();
+        $random = Cuisine::getRandomRestaurant($cuisine_id);
+        return $app['twig']->render("custom_wheel.html.twig", array('cuisines' => $all_cuisines, 'random'=>$random));
+    });
+
     return $app;
 
 ?>

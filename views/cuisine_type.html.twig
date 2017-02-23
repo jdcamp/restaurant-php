@@ -1,9 +1,39 @@
-{% extends 'index.html.twig' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+        <meta charset="utf-8">
+        <title>
+            {% block title %}Restaurant{% endblock %}
+        </title>
+    </head>
+    <body>
+        <div class="container">
 
-{% block cuisine_input %}
-<ul>
-    {% for cuisine in cuisines %}
-        <li><a href="/cuisine/{{cuisine.getId}}">{{cuisine.getCuisine}}</a></li>
-    {% endfor %}
-</ul>
-{% endblock %}
+            <form action="/cuisine_list" method="post">
+                <label for="cuisine_type">Enter a type of Cuisine</label>
+                <input type="text" name="cuisine_type">
+                <button type="submit" name="button">Submit</button>
+            </form>
+            <button type="button">
+                <a href="/delete">Delete Everything</a>
+            </button>
+            <ul>
+                {% for cuisine in cuisines %}
+                    <li>
+                        <a href="/cuisine/{{cuisine.getId}}">{{cuisine.getCuisine}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <h2>Pick a cuisine type to have a random restaurant generated</h2>
+            <form action="/custom_wheel" method="post">
+                <select name="random">
+                    {% for cuisine in cuisines %}
+                        <option value="{{cuisine.getId}}">{{cuisine.getCuisine}}
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-info" name="button">random</button>
+        </form>
+    </div>
+</body>
+</html>
