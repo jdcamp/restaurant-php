@@ -23,9 +23,9 @@
             </button>
                 {% for cuisine in cuisines %}
                 <h3>{{cuisine.getCuisine}}</h3>
+                <a href="/cuisine/{{cuisine.getId}}"><button class="btn btn-info"type="button" name="button">View {{cuisine.getCuisine}} restaurants</button></a>
+                <a href="/update_cuisine/{{cuisine.getId}}"><button class="btn" name="button">edit</button></a>
                         <form action="/delete_cuisine/{{ cuisine.getId }}" method="post">
-                            <a href="/cuisine/{{cuisine.getId}}"><button class="btn btn-info"type="button" name="button">View {{cuisine.getCuisine}} restaurants</button></a>
-                            <a href="/update_cuisine/{{cuisine.getId}}"><button class="btn" name="button">edit</button></a>
                             <input name="_method" type="hidden" value="delete">
                             <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
                         </form>

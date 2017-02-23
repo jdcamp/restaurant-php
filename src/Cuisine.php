@@ -106,5 +106,6 @@
     {
         $GLOBALS['DB']->exec("DELETE FROM cuisine_type WHERE id = {$this->getId()};");
     }
+
 }
 ?>

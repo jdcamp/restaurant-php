@@ -4,20 +4,15 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/styles.css" type="text/css">
+        <meta charset="utf-8">
         <title></title>
     </head>
     <body>
         <div class="jumbotron">
             <h1>Random Choice</h1>
         </div>
-        <a href="/cuisine_list"><button type="button" name="button" class="btn btn-primary">Back</button></a>
-        {% if random == null %}
-            <h2>There are no Restaurants in this cuisine type</h2>
-        {% else %}
-
-        <p>
-            {{random.getRestaurantName}}
-        </p>
-        {% endif %}
+        <div class="container">
+            <h3>{{restaurant.getRestaurantName}}</h3>
+        </div>
     </body>
 </html>
