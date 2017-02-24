@@ -9,10 +9,10 @@
     <body>
         <div class="container body">
             <img src="http://lorempixel.com/1600/900/food" alt="rolling dice"/>
-            <!-- <h1>Roll the dice restaurant picker</h1>
-            <h3>Let the dice decide your lunch fate</h3> -->
+
         </div>
         <div class="container main">
+            {% block main_container %}
             <h1>Restaurant Picker</h1>
             <div class="row">
                 <div class="choice1">
@@ -32,6 +32,7 @@
                     </div>
                     </div>
                 </div>
+                {% endblock %}
             </div>
     </body>
 </html>
