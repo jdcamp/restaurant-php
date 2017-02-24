@@ -8,17 +8,18 @@
     </head>
     <body>
         {% if cuisine.getCuisine == null %}
-        <p>
-            no restaurants
-        </p>
+            <p>
+                no restaurants
+            </p>
         {% endif %}
-
 
         <div class="container">
             <div class="jumbotron">
                 <h1>Restaurants</h1>
             </div>
-            <a href="/cuisine_list"><button type="button" name="button" class="btn btn-primary">Back</button></a>
+            <a href="/cuisine_list">
+                <button type="button" name="button" class="btn btn-primary">Back</button>
+            </a>
 
             <form action="/add_restaurant/{{cuisine.getId}}" method="post">
                 <label for="name">Restaurant Name</label>
@@ -42,16 +43,18 @@
                 </select>
                 <button type="submit" name="button" class="btn">Filter by Price</button>
             </form>
-                {% for restaurant in restaurants %}
-                    <h3>{{restaurant.getRestaurantName}}</h3>
-                    <form action="/delete_restaurant/{{ restaurant.getRestaurantId }}" method="post">
-                        <a href="/edit_restaurant/{{restaurant.getRestaurantId}}">
-                            <button class="btn btn-info" type="button">edit</button>
-                        </a>
-                        <input name="_method" type="hidden" value="delete">
-                        <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
-                    </form>
-                {% endfor %}
+            {% for restaurant in restaurants %}
+                <h3>{{restaurant.getRestaurantName}}</h3>
+                <form action="/delete_restaurant/{{ restaurant.getRestaurantId }}" method="post">
+                    <a href="/edit_restaurant/{{restaurant.getRestaurantId}}">
+                        <button class="btn btn-info" type="button">edit</button>
+                    </a>
+                    <input name="_method" type="hidden" value="delete">
+                    <button class="btn btn-danger" type="submit">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </form>
+            {% endfor %}
         </div>
     </body>
 </html>

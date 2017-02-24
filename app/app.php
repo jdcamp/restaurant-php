@@ -7,7 +7,7 @@
 
     $app = new Silex\Application();
 
-    $server = 'mysql:host=localhost:8889;dbname=cuisine_test';
+    $server = 'mysql:host=localhost:8889;dbname=cuisine';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -61,7 +61,7 @@
     });
     $app->post("/add_restaurant/{id}", function($id) use ($app) {
         $cuisine = Cuisine::find($id);
-        $new_restaurant = new Restaurant(null, $id, $_POST['name'], $_POST['price']);
+        $new_restaurant = new Restaurant(null, $id, filter_var($_POST['name'], FILTER_SANITIZE_MAGIC_QUOTES), $_POST['price']);
         $new_restaurant->save();
         return $app['twig']->render("restaurant_list.html.twig", array('cuisine'=>$cuisine, 'restaurants'=>$cuisine->getRestaurants()));
     });
@@ -78,14 +78,14 @@
         return $app['twig']->render("custom_wheel.html.twig", array('cuisines' => $all_cuisines, 'random'=>$random));
     });
     $app->patch("/edit_cuisine/{id}", function($id) use ($app) {
-        $cuisine = $_POST['new_name'];
+        $cuisine = filter_var($_POST['new_name'], FILTER_SANITIZE_MAGIC_QUOTES);
         $cuisine_type = Cuisine::find($id);
         $cuisine_type->update($cuisine);
         return $app['twig']->render("cuisine_type.html.twig", array('cuisines'=>Cuisine::getAll()));
      });
      $app->patch("/edit_restaurant/{id}", function($id) use ($app) {
          $restaurant = Restaurant::find($id);
-         $restaurant_name = $_POST['new_name'];
+         $restaurant_name = filter_var($_POST['new_name'], FILTER_SANITIZE_MAGIC_QUOTES);
          $price_point = $_POST['new_price'];
          $restaurant->updateName($restaurant_name);
          $restaurant->updatePrice($price_point);

@@ -13,24 +13,34 @@
             <h1>Cuisine Type</h1>
         </div>
         <div class="container">
-            <a href="/"><button type="button" name="button"class="btn">Home</button></a>
+            <a href="/">
+                <button type="button" name="button" class="btn">Home</button>
+            </a>
             <form action="/cuisine_list" method="post">
                 <label for="cuisine_type">Enter a type of Cuisine</label>
                 <input type="text" name="cuisine_type">
-                <button type="submit" name="button" class="btn btn-info" >Submit</button>
+                <button type="submit" name="button" class="btn btn-info">Submit</button>
             </form>
             <button type="button" class="btn btn-danger">
                 <a href="/delete">Delete Everything</a>
             </button>
-                {% for cuisine in cuisines %}
+            {% for cuisine in cuisines %}
                 <h3>{{cuisine.getCuisine}}</h3>
-                <a href="/cuisine/{{cuisine.getId}}"><button class="btn btn-info"type="button" name="button">View {{cuisine.getCuisine}} restaurants</button></a>
-                <a href="/update_cuisine/{{cuisine.getId}}"><button class="btn" name="button">edit</button></a>
-                        <form action="/delete_cuisine/{{ cuisine.getId }}" method="post">
-                            <input name="_method" type="hidden" value="delete">
-                            <button class="btn btn-danger" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
-                        </form>
-                {% endfor %}
+                <a href="/cuisine/{{cuisine.getId}}">
+                    <button class="btn btn-info" type="button" name="button">View
+                        {{cuisine.getCuisine}}
+                        restaurants</button>
+                </a>
+                <a href="/update_cuisine/{{cuisine.getId}}">
+                    <button class="btn" name="button">edit</button>
+                </a>
+                <form action="/delete_cuisine/{{ cuisine.getId }}" method="post">
+                    <input name="_method" type="hidden" value="delete">
+                    <button class="btn btn-danger" type="submit">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </form>
+            {% endfor %}
             <h2>Pick a cuisine type to have a random restaurant generated</h2>
             <form action="/custom_wheel" method="post">
                 <select name="random">

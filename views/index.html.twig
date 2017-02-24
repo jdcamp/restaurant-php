@@ -13,26 +13,26 @@
         </div>
         <div class="container main">
             {% block main_container %}
-            <h1>Restaurant Picker</h1>
-            <div class="row">
-                <div class="choice1">
-                    <div class="col-lg-6">
-                        Choose a random restaurant
-                        <a href="/random_all">
-                            <button type="button" name="button">Random pick!</button>
-                        </a>
+                <h1>Restaurant Picker</h1>
+                <div class="row">
+                    <div class="choice1">
+                        <div class="col-lg-6">
+                            Choose a random restaurant
+                            <a href="/random_all">
+                                <button type="button" name="button">Random pick!</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="choice2">
+                        <div class="col-lg-6">
+                            Enter your favorite restaurants by cuisine type
+                            <a href="/cuisine_list">
+                                <button type="button" name="button">GO!</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="choice2">
-                    <div class="col-lg-6">
-                        Enter your favorite restaurants by cuisine type
-                        <a href="/cuisine_list">
-                            <button type="button" name="button">GO!</button>
-                        </a>
-                    </div>
-                    </div>
-                </div>
-                {% endblock %}
-            </div>
+            {% endblock %}
+        </div>
     </body>
 </html>

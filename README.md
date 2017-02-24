@@ -12,6 +12,10 @@ Allows users to enter restaurants by name and cuisine type then search through t
 * See https://secure.php.net/ for details on installing _PHP_.  Note: PHP is typically already installed on Macs.
 * See https://getcomposer.org for details on installing _composer_.
 * Clone repository
+* Open MAMP- see https://www.mamp.info/en/downloads/ for details on installing _MAMP_
+* Open localhost:8888/phpmyadmin in browser
+* Go to import tab 
+* Install restaurant.zip.sql to access database structure
 * From project root, run > composer install --prefer-source --no-interaction
 * From web folder in project, Start PHP > php -S localhost:8000
 * In web browser open localhost:8000
