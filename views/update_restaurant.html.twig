@@ -9,7 +9,7 @@
     <body>
         <div class="jumbotron">
             <h1>Update
-                {{restaurant.getRestaurantName}}</h1>        
+                {{restaurant.getRestaurantName}}</h1>
         </div>
         <form action="/edit_restaurant/{{restaurant.getRestaurantId}}" method="post">
             <input name="_method" type="hidden" value="patch">
@@ -38,5 +38,6 @@
             </select>
             <button class="btn" type="submit">update</button>
         </form>
+        <a href="/cuisine_list"><button type="button" name="button" class="btn btn-info">Back</button></a>
     </body>
 </html>

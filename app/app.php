@@ -65,6 +65,11 @@
         $new_restaurant->save();
         return $app['twig']->render("restaurant_list.html.twig", array('cuisine'=>$cuisine, 'restaurants'=>$cuisine->getRestaurants()));
     });
+    $app->post("/filter_price/{id}", function($id) use ($app) {
+        $cuisine = Cuisine::find($id);
+        $price = Restaurant::filterPrice($_POST['price_point'],$id);
+        return $app['twig']->render("restaurant_list.html.twig", array('cuisine'=>$cuisine, 'restaurants'=>$price));
+    });
 
     $app->post("/custom_wheel", function() use ($app) {
         $cuisine_id = $_POST['random'];

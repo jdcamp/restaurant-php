@@ -101,19 +101,33 @@
         static function randomAll(){
             $all_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurant;");
             $restaurants = array();
-                foreach ($all_restaurants as $restaurant) {
-                    $restaurant_id = $restaurant['id'];
-                    $cuisine_id = $restaurant['cuisine_id'];
-                    $name = $restaurant['restaurant_name'];
-                    $price_point = $restaurant['price_point'];
-                    $new_restaurant = new Restaurant($restaurant_id, $cuisine_id, $name, $price_point);
-                    array_push($restaurants, $new_restaurant);
+            foreach ($all_restaurants as $restaurant) {
+                $restaurant_id = $restaurant['id'];
+                $cuisine_id = $restaurant['cuisine_id'];
+                $name = $restaurant['restaurant_name'];
+                $price_point = $restaurant['price_point'];
+                $new_restaurant = new Restaurant($restaurant_id, $cuisine_id, $name, $price_point);
+                array_push($restaurants, $new_restaurant);
             }
             $index = rand(0,sizeof($restaurants)-1);
             if (sizeof($restaurants) == 0) {
                 return null;
             }
             return $restaurants[$index];
+        }
+
+        static function filterPrice($user_price, $id){
+            $prices=$GLOBALS['DB']->query("SELECT * FROM restaurant WHERE price_point = {$user_price} AND cuisine_id = {$id};");
+            $price_array = array();
+            foreach ($prices as $restaurant) {
+                $restaurant_id = $restaurant['id'];
+                $cuisine_id = $restaurant['cuisine_id'];
+                $name = $restaurant['restaurant_name'];
+                $price_point = $restaurant['price_point'];
+                $new_restaurant = new Restaurant($restaurant_id, $cuisine_id, $name, $price_point);
+                array_push($price_array, $new_restaurant);
+            }
+            return $price_array;
         }
     }
  ?>
